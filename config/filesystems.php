@@ -73,10 +73,10 @@ return [
 
         'qiniu' => [
             'driver'     => 'qiniu',
-            'access_key' => env('QINIU_ACCESS_KEY', 'zzhJpMtzOHlK10wj7AIpdXMiIbqlzo-76CJ4fS-G'),
-            'secret_key' => env('QINIU_SECRET_KEY', 'm5ChBQd8kSmIggFOTQG22HBbR6fJCgvYmbljYmHf'),
+            'access_key' => env(''),
+            'secret_key' => env(''),
             'bucket'     => env('QINIU_BUCKET', 'development'),
-            'domain'     => env('QINIU_DOMAIN', 'pcbutkw7m.bkt.clouddn.com'),
+            'domain'     => env('QINIU_DOMAIN', ''),
         ],
 
     ],
