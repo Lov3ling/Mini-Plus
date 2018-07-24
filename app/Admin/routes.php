@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Routing\Router;
 
 Admin::registerAuthRoutes();
@@ -16,6 +15,5 @@ Route::group([
     Route::group(['prefix'=>'member'],function(){
         Route::resource('users',Member\UserController::class);
     });
-
 
 });

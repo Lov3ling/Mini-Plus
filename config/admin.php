@@ -68,7 +68,7 @@ return [
      */
     'upload' => [
 
-        'disk' => 'admin',
+        'disk' => 'qiniu',
 
         'directory' => [
             'image' => 'images',
@@ -156,6 +156,9 @@ return [
      * Settings for extensions.
      */
     'extensions' => [
-
+        'media-manager' => [
+            // Select a local disk that you configured in `config/filesystem.php`
+            'disk' => 'admin'
+        ],
     ],
 ];
