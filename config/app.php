@@ -164,6 +164,8 @@ return [
         //七牛云传
         Overtrue\LaravelFilesystem\Qiniu\QiniuStorageServiceProvider::class,
 
+        App\Providers\SmsServiceProvider::class,
+
     ],
 
     /*
@@ -212,6 +214,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'EasySms'=>\App\Common\Facade\EasySms::class,
 
     ],
 

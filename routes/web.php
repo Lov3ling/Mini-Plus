@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +16,28 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/test', function (Request $request) {
-    dd(Route::class);
+Route::any('/test', function (Request $request) {
+
+    $file=$request->file('file');
+
+    //获取文件名
+    $name=$file->getClientOriginalName();
+
+    //获取文件类型
+    $ext=$file->getClientOriginalExtension();
+
+    //获取文件MD5
+    $md5=md5_file($file);
+
+    //获取mimeType
+    $mime=$file->getMimeType();
+
+    //获取文件sha1
+    $sha1=sha1_file($file);
+
+    $result=Storage::disk('qiniu')->writeStream($file->hashName('/jasmine'),fopen($file->getRealPath(),'r'));
+
+    dd($result);
 });
 
 Auth::routes();

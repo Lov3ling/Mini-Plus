@@ -19,10 +19,21 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //测试专用
 Route::any('test',function (Request $request){
-    dd($request);
+
 });
 
 
 Route::group(['prefix'=>'v3'],function (){
-    Route::get('test','Api\UserApi@query');
+    Route::any('test','Api\BaseApi@test');
+
+    //用户接口
+    Route::group(['prefix'=>'user'],function(){
+        Route::post('register','Api\RegisterApi@register');      //用户注册
+        Route::post('login','Api\LoginApi@login');         //用户登录
+    });
+
+    //常用接口
+    Route::group(['prefix'=>'basic'],function(){
+        Route::post('sms','Api\SmsApi@send');      //用户注册
+    });
 });

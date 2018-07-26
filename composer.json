@@ -12,7 +12,9 @@
         "laravel/framework": "5.6.*",
         "laravel/passport": "^6.0",
         "laravel/tinker": "^1.0",
-        "overtrue/laravel-filesystem-qiniu": "^1.0"
+        "overtrue/easy-sms": "^1.1",
+        "overtrue/laravel-filesystem-qiniu": "^1.0",
+        "predis/predis": "^1.1"
     },
     "require-dev": {
         "filp/whoops": "^2.0",
@@ -59,5 +61,11 @@
         "optimize-autoloader": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
 }
