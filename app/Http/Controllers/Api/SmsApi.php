@@ -39,7 +39,7 @@ class SmsApi extends BaseApi
         //发送短信
         try{
             $result=EasySms::send($request->mobile,[
-                'template'=>90373,
+                'template'=>90634,
                 'data'=>[
                     'code'=>$code,
                     'm'=>3

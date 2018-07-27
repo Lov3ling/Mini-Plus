@@ -166,6 +166,8 @@ return [
 
         App\Providers\SmsServiceProvider::class,
 
+        Barryvdh\Cors\ServiceProvider::class,
+
     ],
 
     /*
