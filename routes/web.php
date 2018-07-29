@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\FlowersType;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 /*
@@ -16,7 +17,19 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 Route::any('/test', function (Request $request) {
+
+    $map=$request->only(['id','name']);
+
+    DB::enableQueryLog();
+
+    \App\Model\Flowers::where($map)->get();
+
+    return response()->json(DB::getQueryLog());
+
+    return \App\Model\Flowers::with('type')->first();
 
     $file=$request->file('file');
 

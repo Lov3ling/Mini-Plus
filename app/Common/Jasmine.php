@@ -22,4 +22,17 @@ class Jasmine
     }
 
 
+    /**
+     * 获取查询参数
+     * @param Request $request
+     * @param array $map
+     * @return array
+     */
+    public function getMap(Request $request,$map=[]){
+
+        return array_merge($request->only($map),["status"=>1]);
+
+    }
+
+
 }

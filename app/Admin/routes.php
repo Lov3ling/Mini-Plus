@@ -16,4 +16,11 @@ Route::group([
         Route::resource('users',Member\UserController::class);
     });
 
+    Route::group(['prefix'=>'store'],function (){
+        Route::resource('flowers', Store\FlowersController::class);
+        Route::resource('type', Store\FlowersTypeController::class);
+        Route::resource('advert', Store\AdvertController::class);
+
+    });
+
 });

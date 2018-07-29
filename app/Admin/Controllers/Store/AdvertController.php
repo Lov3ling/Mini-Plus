@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Admin\Controllers\Member;
+namespace App\Admin\Controllers\Store;
 
-use App\User;
+use App\Model\Advert;
 
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
@@ -11,7 +11,7 @@ use Encore\Admin\Layout\Content;
 use App\Http\Controllers\Controller;
 use Encore\Admin\Controllers\ModelForm;
 
-class UserController extends Controller
+class AdvertController extends Controller
 {
     use ModelForm;
 
@@ -56,8 +56,10 @@ class UserController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
+
             $content->header('header');
             $content->description('description');
+
             $content->body($this->form());
         });
     }
@@ -69,15 +71,12 @@ class UserController extends Controller
      */
     protected function grid()
     {
-        return Admin::grid(User::class, function (Grid $grid) {
-            $grid->model()->OrderBy('created_at','desc');
-
+        return Admin::grid(Advert::class, function (Grid $grid) {
+            $grid->model()->orderBy('created_at','desc','sort','desc');
             $grid->id('ID')->sortable();
-            $grid->column('name','用户名');
-            $grid->column('avatar','头像')->image('',32,32);
-            $grid->column('nickname','昵称');
-            $grid->column('email','邮箱');
-            $grid->column('money','余额');
+            $grid->column('name','名称');
+            $grid->column('url','跳转链接');
+            $grid->column('sort','优先级');
             $grid->created_at('创建时间');
             $grid->column('status','状态')
                 ->switch([
@@ -94,34 +93,22 @@ class UserController extends Controller
      */
     protected function form()
     {
-        return Admin::form(User::class, function (Form $form) {
-
+        return Admin::form(Advert::class, function (Form $form) {
             $form->display('id', 'ID');
-            $form->text('name','用户名');
-            $form->image('avatar','头像');
-            $form->text('nickname','昵称');
-            $form->password('password','密码');
-            $form->email('email','邮箱');
-            $form->mobile('mobile','手机');
+            $form->text('name','名称')
+                ->rules(['required'],['required'=>'请输入名称']);
+
+            $form->image('image','图片')
+                ->rules(['required'],['required'=>'请上传图片']);
+
+            $form->text('url','跳转链接');
+
+            $form->textarea('content','描述')->setWidth(8);
+
+            $form->number('sort','优先级')->default(10);
+
             $form->display('created_at', 'Created At');
             $form->display('updated_at', 'Updated At');
-            $form->saved($this->saved());
-
         });
     }
-
-
-    /**
-     * saved callback
-     *
-     * @return \Closure
-     */
-    public function saved()
-    {
-        return function (Form $form){
-            $form->model()->password=bcrypt($form->model()->password);
-            $form->model()->save();
-        };
-    }
-
 }

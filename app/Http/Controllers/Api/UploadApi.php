@@ -6,13 +6,18 @@ use Illuminate\Http\Request;
 use App\Model\User as UserModel;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * 文件上传接口
+ * Class UploadApi
+ * @package App\Http\Controllers\Api
+ */
 class UploadApi extends BaseApi
 {
     /**
      * 文件上传
      * @param Request $request
      */
-    public function upload(Request $request)
+    protected function upload(Request $request)
     {
         //验证表单
         $validator=Validator::make($request->all(),$this->rule(),$this->message());
@@ -44,6 +49,10 @@ class UploadApi extends BaseApi
 
     }
 
+    /**
+     * 验证规则
+     * @return array
+     */
     public function rule()
     {
         return [
@@ -51,6 +60,10 @@ class UploadApi extends BaseApi
         ];
     }
 
+    /**
+     * 验证错误信息
+     * @return array
+     */
     public function message()
     {
         return [
